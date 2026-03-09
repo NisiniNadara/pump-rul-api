@@ -1,6 +1,18 @@
+import os
+import urllib.request
 import joblib
 import pandas as pd
 from flask import Flask, request, jsonify
+
+MODEL_URL = "https://drive.google.com/uc?export=download&id=1ICaqXbsZY3WM-IWVlZkFvopdMYd9_ewo"
+MODEL_PATH = "rul_model_final.pkl"
+
+# download model if not exists
+if not os.path.exists(MODEL_PATH):
+    print("Downloading model...")
+    urllib.request.urlretrieve(MODEL_URL, MODEL_PATH)
+    print("Model downloaded.")
+
 
 app = Flask(__name__)
 
